@@ -42,3 +42,25 @@
 {"updatetime":"2023/04/18","price":"23490","source":"Yahoo"}
 {"updatetime":"2023/04/01","price":"23480","source":"Yahoo"}
 ]
+[
+{"symbolname":"USD/VND","lastValue":"26320","valueChange":"888","valueChangePercent":"3.5","updatetime_present":"2025/11/06 00:00:00","updatetime_history":"","source_link":"https://finance.yahoo.com/quote/VND%3DX/history?period1=1681800022&period2=1713422422&interval=1mo&filter=history&frequency=1mo&includeAdjustedClose=true","author":"admin"}
+{"symbolname":"USD/VND","lastValue":"","valueChange":"858","valueChangePercent":"3.4","updatetime_present":"2025/11/06 00:00:00","updatetime_history":"","source_link":"https://finance.yahoo.com/quote/VND%3DX/history?period1=1681800022&period2=1713422422&interval=1mo&filter=history&frequency=1mo&includeAdjustedClose=true","author":"admin"}{"write":"..."}{"updatetime":"2025/11/06","price":"","source":"USDT-Coingecko"}
+{"updatetime":"2025/11/06","price":"26320","source":"USDT-Coingecko"}
+
+{"updatetime":"2024/11/06","price":"25432","source":"USDT-Coingecko"}
+{"updatetime":"2024/05/15","price":"25863","source":"USDT-P2P"}
+{"updatetime":"2024/05/01","price":"25924","source":"USDT-P2P"}
+{"updatetime":"2024/04/27","price":"26042","source":"USDT-P2P"}
+{"updatetime":"2024/04/24","price":"26060","source":"USDT-P2P"}
+{"updatetime":"2024/04/19","price":"25445","source":"Yahoo"}
+{"updatetime":"2024/04/18","price":"25100","source":"Yahoo"}
+{"updatetime":"2024/04/01","price":"25280","source":"Yahoo"}
+
+{"updatetime":"2023/05/15","price":"23450","source":"Yahoo"}
+{"updatetime":"2023/05/01","price":"23480","source":"Yahoo"}
+{"updatetime":"2023/04/27","price":"23465","source":"Yahoo"}
+{"updatetime":"2023/04/24","price":"23445","source":"Yahoo"}
+{"updatetime":"2023/04/19","price":"23480","source":"Yahoo"}
+{"updatetime":"2023/04/18","price":"23490","source":"Yahoo"}
+{"updatetime":"2023/04/01","price":"23480","source":"Yahoo"}
+]
