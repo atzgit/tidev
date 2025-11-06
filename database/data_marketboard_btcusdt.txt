@@ -1,6 +1,7 @@
 [
-{"symbolname":"BTC/USDT","lastValue":"104527","valueChange":"888","valueChangePercent":"3.5","updatetime_present":"2025/11/04 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"symbolname":"BTC/USDT","lastValue":"103268.21000000","valueChange":"1636.30000000","valueChangePercent":"3.5","updatetime_present":"2025/11/04 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
 {"write":"..."}
+{"updatetime":"2025/11/06","price":"103268.21000000","source":"Bi"}
 {"updatetime":"2025/11/04","price":"104527","source":"Bi"}
 {"updatetime":"2025/11/03","price":"107779","source":"Bi"}
 ]
