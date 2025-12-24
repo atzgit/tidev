@@ -1,0 +1,5 @@
+[
+{"symbolname":"PAXG/USDT","lastValue":"4504","valueChange":"2","valueChangePercent":"0.38","updatetime_present":"2025/12/24 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"write":"..."}
+{"updatetime":"2025/12/24","price":"4504","source":"Bi"}
+]

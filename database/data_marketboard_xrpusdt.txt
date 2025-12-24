@@ -1,0 +1,5 @@
+[
+{"symbolname":"XRP/USDT","lastValue":"1.83","valueChange":"0.87","valueChangePercent":"-2.18","updatetime_present":"2025/12/24 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"write":"..."}
+{"updatetime":"2025/12/24","price":"1.83","source":"Bi"}
+]
