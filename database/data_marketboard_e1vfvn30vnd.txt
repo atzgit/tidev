@@ -1,5 +1,6 @@
 [
-{"symbolname":"E1VFVN30/VND","lastValue":"35520","valueChange":"-180","valueChangePercent":"-0.5","updatetime_present":"2025/12/24 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"symbolname":"E1VFVN30/VND","lastValue":"35732.5","valueChange":"194.1","valueChangePercent":"-0.5","updatetime_present":"2025/12/25 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
 {"write":"..."}
+{"updatetime":"2025/12/25","price":"35732.5","source":"Bi-8368992"}
 {"updatetime":"2025/12/24","price":"35520","source":"DragonCapital"}
 ]
