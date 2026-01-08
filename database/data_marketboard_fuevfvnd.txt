@@ -1,5 +1,0 @@
-[
-{"symbolname":"FUEVF/VND","lastValue":"39000","valueChange":"0","valueChangePercent":"0","updatetime_present":"2026/01/07 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
-{"write":"..."}
-{"updatetime":"2026/01/07","price":"39000","source":"DragonCapital"}
-]
