@@ -1,6 +1,7 @@
 [
-{"symbolname":"BNB/USDT","lastValue":"912.84000000","valueChange":"-0.66000000","valueChangePercent":"1.62","updatetime_present":"2026/01/07 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"symbolname":"BNB/USDT","lastValue":"899.38000000","valueChange":"-18.00000000","valueChangePercent":"1.62","updatetime_present":"2026/01/08 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
 {"write":"..."}
+{"updatetime":"2026/01/08","price":"899.38000000","source":"Bi-8368992"}
 {"updatetime":"2026/01/07","price":"912.84000000","source":"Bi-B316B46"}
 {"updatetime":"2026/01/06","price":"910.65000000","source":"Bi-8368992"}
 {"updatetime":"2026/01/05","price":"894.41000000","source":"Bi-B316B46"}
