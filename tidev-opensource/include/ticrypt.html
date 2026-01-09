@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiCrypt</title>
+    <link rel="icon" type="image/x-icon" href="https://atzgit.github.io/assets/favicon.ico">
+    <!-- Font Awesome cho icon mắt -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+        }
+        button {
+            padding: 18px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            background: #f0f0f0;
+            padding: 15px;
+            font-size: 18px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            min-height: 150px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .action-buttons button {
+            flex: 1;
+        }
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .password-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .password-wrapper {
+            flex: 1;
+            min-width: 250px;
+        }
+        .input-wrapper {
+            flex: 1;
+            min-width: 250px;
+        }
+        .copy-button {
+            margin-top: 40px;
+            width: 100%;
+            text-align: center;
+        }
+        .eye-toggle {
+            background: #e9ecef;
+            color: #495057;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .eye-toggle:hover {
+            background: #dee2e6;
+        }
+        .credit {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h2>TiCrypt - Mã hóa / Giải mã AES-GCM</h2>
+    
+    <label>Mật mã:</label>
+    <div class="password-row">
+        <div class="password-wrapper">
+            <input type="password" id="password" value="matma123">
+        </div>
+        <button type="button" class="eye-toggle" onclick="togglePassword()" aria-label="Hiện/Ẩn mật mã">
+            <i class="fas fa-eye-slash" id="eye-icon"></i>
+        </button>
+    </div>
+    
+    <label>Chuỗi cần mã hóa / Base64 cần giải mã:</label>
+    <div class="input-row">
+        <div class="input-wrapper">
+            <input type="text" id="input" value="Xin chào bạn, đây là tiếng Việt có dấu nè! 😊">
+        </div>
+        <button onclick="pasteToInput()" style="height: 52px;">Dán từ clipboard</button>
+    </div>
+    
+    <div class="action-buttons">
+        <button onclick="encrypt()">Mã hóa</button>
+        <button onclick="decrypt()">Giải mã</button>
+    </div>
+    
+    <div class="copy-button">
+        <button onclick="copyOutput()" style="width: 100%; max-width: 400px;">Sao chép kết quả</button>
+    </div>
+    
+    <pre id="output">Kết quả sẽ hiện ở đây...</pre>
+
+	 <!-- Credit -->
+    <div class="credit">
+        Made by ATZ & Grok - Tool mã hóa AES-GCM tương thích AutoIt.<br>
+        Xem mã nguồn autoit <a href="https://github.com/atzgit/tidev/blob/master/tidev-opensource/readme.md" target="_blank" rel="noopener noreferrer">tại đây</a>.<br>
+        Có thể lưu file này về máy và chạy offline hoàn toàn.
+    </div>
+
+    <script>
+        function togglePassword() {
+            const pwdField = document.getElementById("password");
+            const eyeIcon = document.getElementById("eye-icon");
+            if (pwdField.type === "password") {
+                pwdField.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                pwdField.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+
+        function escapeUnicode(str) {
+            let result = '';
+            for (let i = 0; i < str.length; i++) {
+                let code = str.charCodeAt(i);
+                if (code > 127) {
+                    result += '\\u' + code.toString(16).padStart(4, '0').toUpperCase();
+                } else {
+                    result += str[i];
+                }
+            }
+            return result;
+        }
+
+        function unescapeUnicode(str) {
+            return str.replace(/\\u([0-9A-Fa-f]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp, 16)));
+        }
+
+        async function deriveKey(password, saltBytes) {
+            const encoder = new TextEncoder();
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                encoder.encode(password),
+                "PBKDF2",
+                false,
+                ["deriveKey"]
+            );
+            return crypto.subtle.deriveKey(
+                {
+                    "name": "PBKDF2",
+                    salt: saltBytes,
+                    "iterations": 100000,
+                    "hash": "SHA-256"
+                },
+                keyMaterial,
+                { "name": "AES-GCM", "length": 256 },
+                false,
+                ["encrypt", "decrypt"]
+            );
+        }
+
+        async function encrypt() {
+            const password = document.getElementById("password").value;
+            let plaintext = document.getElementById("input").value;
+            plaintext = escapeUnicode(plaintext);
+
+            const encoder = new TextEncoder();
+            const data = encoder.encode(plaintext);
+
+            // Random salt 16 byte
+            const salt = crypto.getRandomValues(new Uint8Array(16));
+
+            // Derive key
+            const key = await deriveKey(password, salt);
+
+            // GCM iv 12 byte
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+
+            // Encrypt
+            const encrypted = await crypto.subtle.encrypt(
+                { name: "AES-GCM", iv: iv },
+                key,
+                data
+            );
+
+            // Auth tag tự động append vào encrypted ở Web Crypto
+            const ciphertextWithTag = new Uint8Array(encrypted);
+
+            // Ghép salt + iv + ciphertextWithTag
+            const result = new Uint8Array(salt.byteLength + iv.byteLength + ciphertextWithTag.byteLength);
+            result.set(salt, 0);
+            result.set(iv, salt.byteLength);
+            result.set(ciphertextWithTag, salt.byteLength + iv.byteLength);
+
+            const base64 = btoa(String.fromCharCode(...result));
+            document.getElementById("output").textContent = base64;
+        }
+
+        async function decrypt() {
+            const password = document.getElementById("password").value;
+            let base64 = document.getElementById("input").value.trim();
+
+            if (base64.length === 0) return;
+
+            base64 = base64.replace(/[\n\r\t\s]/g, '');
+
+            let binary;
+            try {
+                binary = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+            } catch (e) {
+                alert("Dữ liệu Base64 không hợp lệ!");
+                return;
+            }
+
+            if (binary.length < 16 + 12 + 16) {
+                alert("Dữ liệu quá ngắn!");
+                return;
+            }
+
+            // Tách phần
+            const salt = binary.slice(0, 16);
+            const iv = binary.slice(16, 28);
+            const ciphertextWithTag = binary.slice(28);
+
+            // Derive key
+            const key = await deriveKey(password, salt);
+
+            try {
+                const decrypted = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: iv },
+                    key,
+                    ciphertextWithTag
+                );
+                const decoder = new TextDecoder();
+                let plaintext = decoder.decode(decrypted);
+                plaintext = unescapeUnicode(plaintext);
+
+                document.getElementById("output").textContent = plaintext;
+            } catch (e) {
+                alert("Sai mật mã hoặc dữ liệu bị hỏng!");
+            }
+        }
+
+        async function copyOutput() {
+            const output = document.getElementById("output").textContent;
+            if (!output) return;
+            try {
+                await navigator.clipboard.writeText(output);
+            } catch (err) {
+                alert("Sao chép thất bại, bạn thử chọn thủ công nghen!");
+            }
+        }
+
+        async function pasteToInput() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("input").value = text;
+            } catch (err) {
+                alert("Dán thất bại, bạn thử dán tay nghen!");
+            }
+        }
+    </script>
+</body>
+</html>
