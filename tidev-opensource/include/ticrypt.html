@@ -129,7 +129,7 @@
     <label>Chuỗi cần mã hóa / Base64 cần giải mã:</label>
     <div class="input-row">
         <div class="input-wrapper">
-            <input type="text" id="input" value="Xin chào bạn, đây là tiếng Việt có dấu nè! 😊">
+            <input type="text" id="input" value="Xin chào bạn! 😊">
         </div>
         <button onclick="pasteToInput()" style="height: 52px;">Dán từ clipboard</button>
     </div>
@@ -140,7 +140,7 @@
     </div>
     
     <div class="copy-button">
-        <button onclick="copyOutput()" style="width: 100%; max-width: 400px;">Sao chép kết quả</button>
+        <button onclick="copyOutput()" style="width: 100%; max-width: 400px;">Sao chép & xóa kết quả</button>
     </div>
     
     <pre id="output">Kết quả sẽ hiện ở đây...</pre>
@@ -289,7 +289,26 @@
             }
         }
 
-        async function copyOutput() {
+		async function copyOutput() {
+			const outputElement = document.getElementById("output");
+   			const output = outputElement.textContent.trim(); // trim để tránh copy rác khoảng trắng
+			if (!output) {
+				alert("Chưa có kết quả gì để copy nghen bạn!");
+        		return;
+		    }
+ 		   try {
+   		     await navigator.clipboard.writeText(output);
+				// Xóa kết quả sau khi copy thành công
+       			outputElement.textContent = "";
+				// Optional: hiện thông báo xịn hơn (có thể bỏ nếu không thích)
+				// alert("Đã copy xong và xóa kết quả cho sếp rồi nha! ✓");
+			} catch (err) {
+				console.error("Lỗi copy:", err);
+				alert("Sao chép thất bại, bạn chọn thủ công copy giùm tui nghen!");
+			}
+		}
+		
+        async function copyOutput_OLD_DELETE() {
             const output = document.getElementById("output").textContent;
             if (!output) return;
             try {
@@ -311,4 +330,5 @@
 </body>
 
 </html>
+
 
