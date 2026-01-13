@@ -1,6 +1,7 @@
 [
-{"symbolname":"USD/VND","lastValue":"26253","valueChange":"13118","valueChangePercent":"3.5","updatetime_present":"2026/01/13 00:00:00","updatetime_history":"","source_link":"https://finance.yahoo.com/quote/VND%3DX/history?period1=1681800022&period2=1713422422&interval=1mo&filter=history&frequency=1mo&includeAdjustedClose=true","author":"admin"}
+{"symbolname":"USD/VND","lastValue":"26273","valueChange":"13126","valueChangePercent":"3.5","updatetime_present":"2026/01/14 00:00:00","updatetime_history":"","source_link":"https://finance.yahoo.com/quote/VND%3DX/history?period1=1681800022&period2=1713422422&interval=1mo&filter=history&frequency=1mo&includeAdjustedClose=true","author":"admin"}
 {"write":"..."}
+{"updatetime":"2026/01/14","price":"26273","source":"USDT-Coingecko-8368992"}
 {"updatetime":"2026/01/13","price":"26253","source":"USDT-Coingecko-87A867E"}
 {"updatetime":"2026/01/12","price":"26236","source":"USDT-Coingecko-B316B46"}
 {"updatetime":"2026/01/11","price":"26235","source":"USDT-Coingecko-87A867E"}
