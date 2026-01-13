@@ -300,6 +300,8 @@
    		     await navigator.clipboard.writeText(output);
 				// Xóa kết quả sau khi copy thành công
        			outputElement.textContent = "";
+			   // Xóa dữ liệu input
+				document.getElementById("input").value = "";
 				// Optional: hiện thông báo xịn hơn (có thể bỏ nếu không thích)
 				// alert("Đã copy xong và xóa kết quả cho sếp rồi nha! ✓");
 			} catch (err) {
@@ -330,5 +332,6 @@
 </body>
 
 </html>
+
 
 
