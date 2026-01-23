@@ -5,7 +5,7 @@
 
 
 If @Compiled=0 And @ScriptName='ATZUDF_Ticrypt.au3' Then ; TEST ZONE
-   Local $password = "matma123"
+   Local $password = "PassHere"
    Local $original = "Xin chào sếp, đây là tiếng Việt có dấu nè! 😊"
    ConsoleWrite("Original: " & $original & @CRLF & @CRLF)
 
