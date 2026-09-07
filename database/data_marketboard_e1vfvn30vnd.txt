@@ -1,6 +1,7 @@
 [
-{"symbolname":"E1VFVN30/VND","lastValue":"31722.85","valueChange":"-401.04","valueChangePercent":"-0.5","updatetime_present":"2026/09/06 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
+{"symbolname":"E1VFVN30/VND","lastValue":"31722.85","valueChange":"-401.04","valueChangePercent":"-0.5","updatetime_present":"2026/09/07 00:00:00","updatetime_history":"","source_link":"","author":"admin"}
 {"write":"..."}
+{"updatetime":"2026/09/07","price":"31722.85","source":"Bi-8368992"}
 {"updatetime":"2026/09/06","price":"31722.85","source":"Bi-8493B62"}
 {"updatetime":"2026/09/05","price":"31722.85","source":"Bi-8493B62"}
 {"updatetime":"2026/09/06","price":"31722.85","source":"Bi-B316B46"}
