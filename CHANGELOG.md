@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.140]
+- Fix bugs.
+- Improve performance.
+
 ## [2.0.122]
 - Fix Widget stuck InetRead
 - Fix bugs.
