@@ -192,23 +192,6 @@
             }
         }
 
-        function escapeUnicode(str) {
-            let result = '';
-            for (let i = 0; i < str.length; i++) {
-                let code = str.charCodeAt(i);
-                if (code > 127) {
-                    result += '\\u' + code.toString(16).padStart(4, '0').toUpperCase();
-                } else {
-                    result += str[i];
-                }
-            }
-            return result;
-        }
-
-        function unescapeUnicode(str) {
-            return str.replace(/\\u([0-9A-Fa-f]{4})/g, (match, grp) => String.fromCharCode(parseInt(grp, 16)));
-        }
-
         async function deriveKey(password, saltBytes) {
             const encoder = new TextEncoder();
             const keyMaterial = await crypto.subtle.importKey(
@@ -235,7 +218,6 @@
         async function encrypt() {
             const password = document.getElementById("password").value;
             let plaintext = document.getElementById("input").value;
-            plaintext = escapeUnicode(plaintext);
 
             const encoder = new TextEncoder();
             const data = encoder.encode(plaintext);
@@ -265,7 +247,12 @@
             result.set(iv, salt.byteLength);
             result.set(ciphertextWithTag, salt.byteLength + iv.byteLength);
 
-            const base64 = btoa(String.fromCharCode(...result));
+            // Đổi byte sang chuỗi theo từng khối 32 KB, tránh lỗi quá số đối số khi dữ liệu dài
+            let binaryString = '';
+            for (let i = 0; i < result.length; i += 0x8000) {
+                binaryString += String.fromCharCode.apply(null, result.subarray(i, i + 0x8000));
+            }
+            const base64 = btoa(binaryString);
             document.getElementById("output").value = base64;
         }
 
@@ -306,7 +293,6 @@
                 );
                 const decoder = new TextDecoder();
                 let plaintext = decoder.decode(decrypted);
-                plaintext = unescapeUnicode(plaintext);
 
                 document.getElementById("output").value = plaintext;
             } catch (e) {
@@ -345,6 +331,5 @@
 </body>
 
 </html>
-
 
 
